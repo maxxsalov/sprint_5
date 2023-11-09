@@ -30,11 +30,9 @@ class TestRegistation:
         driver.find_element(By.XPATH, locators.TestLocators.Input_password_locator).send_keys("qwer")
         WebDriverWait(driver, 10).until(
             expected_conditions.visibility_of_element_located((By.XPATH, ".//input[@value='qwer']")))
-        value = driver.find_element(By.XPATH, locators.TestLocators.Input_password_locator).get_attribute("value")
-
-        assert len(value) < 6, 'Некорректный пароль'
         driver.find_element(By.XPATH, locators.TestLocators.Log_in_locator).click()
-        WebDriverWait(driver, 10)
+        assert driver.find_element(By.XPATH, ".// p[text() = 'Некорректный пароль']").text == 'Некорректный пароль'
+
 
     def test_registration_successed(self, regs):
         regs.find_elements(By.XPATH, locators.TestLocators.Input_email_locator)[0].send_keys(data.mail)
