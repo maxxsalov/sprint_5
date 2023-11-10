@@ -20,7 +20,7 @@ class TestAuthorization:
         driver.find_element(By.XPATH, locators.TestLocators.Log_in_locator).click()
         WebDriverWait(driver, 10).until(
             expected_conditions.url_to_be("https://stellarburgers.nomoreparties.site/"))
-        assert driver.current_url == "https://stellarburgers.nomoreparties.site/"
+        assert driver.find_element(By.XPATH, locators.TestLocators.Order_button_locator).text == "Оформить заказ"
 
     def test_authorization_in_the_system(self, driver):
         driver.get("https://stellarburgers.nomoreparties.site/")
@@ -36,7 +36,7 @@ class TestAuthorization:
         driver.find_element(By.XPATH, locators.TestLocators.Log_in_locator).click()
         WebDriverWait(driver, 10).until(
             expected_conditions.url_to_be("https://stellarburgers.nomoreparties.site/"))
-        assert driver.current_url == "https://stellarburgers.nomoreparties.site/"
+        assert driver.find_element(By.XPATH, locators.TestLocators.Order_button_locator).text == "Оформить заказ"
 
     def test_authorization_via_recovery_form(self, driver):
         driver.get("https://stellarburgers.nomoreparties.site/login")
@@ -59,7 +59,7 @@ class TestAuthorization:
         driver.find_element(By.XPATH, locators.TestLocators.Log_in_locator).click()
         WebDriverWait(driver, 15).until(
             expected_conditions.url_to_be("https://stellarburgers.nomoreparties.site/"))
-        assert driver.current_url == "https://stellarburgers.nomoreparties.site/"
+        assert driver.find_element(By.XPATH, locators.TestLocators.Order_button_locator).text == "Оформить заказ"
 
     def test_logout_from_account(self, auth):
         auth.find_element(By.XPATH, locators.TestLocators.Search_personal_button_main_locator).click()
@@ -67,4 +67,4 @@ class TestAuthorization:
         auth.find_element(By.XPATH, locators.TestLocators.Logout_button_locator).click()
         WebDriverWait(auth, 10).until(
             expected_conditions.url_to_be("https://stellarburgers.nomoreparties.site/login"))
-        assert auth.current_url == "https://stellarburgers.nomoreparties.site/login"
+        assert auth.find_element(By.XPATH, locators.TestLocators.Log_in_locator).text == 'Войти'
